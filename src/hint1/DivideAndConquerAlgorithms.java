@@ -13,7 +13,7 @@ public class DivideAndConquerAlgorithms {
 	 * Constructor of the class. Do not edit it.
 	 */
 	public DivideAndConquerAlgorithms(){}
-		
+
 	//-------------------------------------------------------------------
 	// 0. iterativeDisplayElements --> Displays all elements of a MyList 
 	//-------------------------------------------------------------------	
@@ -30,7 +30,7 @@ public class DivideAndConquerAlgorithms {
 		// I. SCENARIO IDENTIFICATION
 		//-----------------------------
 		int scenario = 0; 
-		
+
 		//Rule 1. MyList is empty
 		if (m.length() == 0) 
 			scenario = 1;
@@ -42,28 +42,28 @@ public class DivideAndConquerAlgorithms {
 		// II. SCENARIO IMPLEMENTATION 
 		//-----------------------------
 		switch(scenario){	
-				
+
 		//Rule 1. MyList is empty
 		case 1: 
 			//1. We print the empty message
 			System.out.println("Empty MyList");
-			
+
 			break;
-			
-		//Rule 2. MyList is non-empty
+
+			//Rule 2. MyList is non-empty
 		case 2: 
 			//1. We print the initial message
 			int size = m.length();
 			System.out.println("MyList Contains the following " + size + " items: ");
-			
+
 			//2. We traverse the items
 			for (int i = 0; i < size; i++)
 				System.out.println("Item " + i + ": " + m.getElement(i));
-			
+
 			break;
-	
+
 		}
-		
+
 	}
 
 	//-------------------------------------------------------------------
@@ -76,6 +76,20 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public int maxInt(MyList<Integer> m){
 
+		if(m.length() > 0)
+		{
+			int max = m.getElement(0);
+
+			for(int i = 1; i < m.length(); i++)
+			{
+				if(m.getElement(i) > max)
+					max = m.getElement(i);
+			}
+
+			return max;
+		}
+
+		return -1;
 	}
 
 	//-------------------------------------------------------------------
@@ -88,6 +102,22 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public boolean isReverse(MyList<Integer> m){
 
+		if(m.length() > 0)
+		{
+			int number = m.getElement(0);
+
+			for(int i = 1; i < m.length(); i++)
+			{
+				if(number > m.getElement(i))
+					number = m.getElement(i);
+				else
+					return false;
+			}
+		}
+		else
+			return false;
+
+		return true;
 	}
 
 	//-------------------------------------------------------------------
@@ -101,8 +131,18 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public int getNumAppearances(MyList<Integer> m, int n){
 
+		int counter = 0;
+
+		for(int i = 0; i < m.length(); i++)
+		{
+			if(m.getElement(i) == n)
+				counter++;
+		}
+		
+		return counter;
+
 	}
-	
+
 	//-------------------------------------------------------------------
 	// 4. power --> Computes the m-est power of n
 	//-------------------------------------------------------------------	
@@ -115,8 +155,9 @@ public class DivideAndConquerAlgorithms {
 
 	public int power(int n, int m){
 
+		return (int) Math.pow(n, m);
 	}
-	
+
 	//-------------------------------------------------------------------
 	// 5. lucas --> Computes the n-est term of the Lucas series
 	//-------------------------------------------------------------------	
@@ -126,7 +167,8 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The term being computed 
 	 */	
 	public int lucas(int n){
-
+		
+		
 	}
 
 	//-------------------------------------------------------------------
@@ -143,5 +185,5 @@ public class DivideAndConquerAlgorithms {
 	public void drawImage(int n){
 
 	}
-		
+
 }
