@@ -180,7 +180,7 @@ public class DivideAndConquerAlgorithms {
 	 */	
 
 	public int power(int n, int m){
-		
+
 		if(m == 0)
 			return 1;
 		else
@@ -224,12 +224,18 @@ public class DivideAndConquerAlgorithms {
 	 * @param n: The length of the desired pattern
 	 */	
 	public void drawImage(int n){
-		
+
 		if(n > 0)
 		{
-			
 			drawImage(n - 1);
+			
+			for(int i = 0; i < n; i++)
+				System.out.print("*");
+
+			System.out.println("");
 		}
+		else
+			System.out.println("");
 	}
 
 }
