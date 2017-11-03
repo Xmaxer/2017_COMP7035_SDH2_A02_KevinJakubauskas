@@ -78,6 +78,15 @@ public class DivideAndConquerAlgorithms {
 
 		if(m.length() > 0)
 		{
+			int number = m.getElement(0);
+			m.removeElement(0);
+			return Math.max(number, maxInt(m));
+		}
+		
+		return -1;
+		
+		/*if(m.length() > 0)
+		{
 			int max = m.getElement(0);
 
 			for(int i = 1; i < m.length(); i++)
@@ -89,7 +98,7 @@ public class DivideAndConquerAlgorithms {
 			return max;
 		}
 
-		return -1;
+		return -1;*/
 	}
 
 	//-------------------------------------------------------------------
@@ -138,7 +147,7 @@ public class DivideAndConquerAlgorithms {
 			if(m.getElement(i) == n)
 				counter++;
 		}
-		
+
 		return counter;
 
 	}
@@ -155,7 +164,20 @@ public class DivideAndConquerAlgorithms {
 
 	public int power(int n, int m){
 
-		return (int) Math.pow(n, m);
+		int result = 0;
+		
+		if(m != 0)
+		{
+			result = n;
+			
+			for(;1 < m; m--)
+			{
+				result *= n;
+			}
+		}
+		
+		return result;
+		//return (int) Math.pow(n, m);
 	}
 
 	//-------------------------------------------------------------------
@@ -167,8 +189,8 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The term being computed 
 	 */	
 	public int lucas(int n){
-		
-		
+
+		return 0;
 	}
 
 	//-------------------------------------------------------------------
