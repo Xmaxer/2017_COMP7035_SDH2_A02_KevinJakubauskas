@@ -187,10 +187,8 @@ public class DivideAndConquerAlgorithms {
 			return n;
 		else
 		{
-			int result = n*n;
 			m--;
-			result = n *= power(n, m);
-			return result;
+			return n * power(n, m);
 		}
 	}
 
@@ -203,8 +201,17 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The term being computed 
 	 */	
 	public int lucas(int n){
+		if(n >= 0)
+		{
+			if(n == 0)
+				return 2;
+			if(n == 1)
+				return 1;
+			else
+				return lucas(n - 1) + lucas(n - 2);
+		}
 
-		return 0;
+		return -1;
 	}
 
 	//-------------------------------------------------------------------
@@ -220,6 +227,10 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public void drawImage(int n){
 
+		if(n > 0)
+		{
+
+		}
 	}
 
 }
