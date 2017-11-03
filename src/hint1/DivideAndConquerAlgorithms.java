@@ -180,15 +180,25 @@ public class DivideAndConquerAlgorithms {
 	 */	
 
 	public int power(int n, int m){
-
+		
 		if(m == 0)
 			return 1;
-		if(m == 1)
-			return n;
 		else
-		{
+		{	
+			boolean isNegative = false;
+			if(m < 0)
+			{
+				m = Math.abs(m);
+				isNegative = true;
+			}
+			
 			m--;
-			return n * power(n, m);
+			int result =  n * power(n, m);
+			
+			if(isNegative)
+				return 1/result;
+			
+			return result;
 		}
 	}
 
@@ -226,10 +236,10 @@ public class DivideAndConquerAlgorithms {
 	 * @param n: The length of the desired pattern
 	 */	
 	public void drawImage(int n){
-
+		
 		if(n > 0)
 		{
-
+			drawImage(n - 1);
 		}
 	}
 
