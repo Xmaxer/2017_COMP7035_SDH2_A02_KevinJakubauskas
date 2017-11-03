@@ -80,11 +80,13 @@ public class DivideAndConquerAlgorithms {
 		{
 			int number = m.getElement(0);
 			m.removeElement(0);
-			return Math.max(number, maxInt(m));
+			int result = Math.max(number, maxInt(m));
+			m.addElement(0, number);
+			return result;
 		}
-		
+
 		return -1;
-		
+
 		/*if(m.length() > 0)
 		{
 			int max = m.getElement(0);
@@ -111,22 +113,26 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public boolean isReverse(MyList<Integer> m){
 
-		if(m.length() > 0)
+		if(m.length() > 1)
 		{
 			int number = m.getElement(0);
-
-			for(int i = 1; i < m.length(); i++)
+			
+			if(number > m.getElement(1))
 			{
-				if(number > m.getElement(i))
-					number = m.getElement(i);
-				else
-					return false;
+				m.removeElement(0);
+
+				boolean result = isReverse(m);
+
+				m.addElement(0, number);
+				
+				return result;
 			}
+			else
+				return false;
+
 		}
 		else
-			return false;
-
-		return true;
+			return true;
 	}
 
 	//-------------------------------------------------------------------
@@ -165,17 +171,17 @@ public class DivideAndConquerAlgorithms {
 	public int power(int n, int m){
 
 		int result = 0;
-		
+
 		if(m != 0)
 		{
 			result = n;
-			
+
 			for(;1 < m; m--)
 			{
 				result *= n;
 			}
 		}
-		
+
 		return result;
 		//return (int) Math.pow(n, m);
 	}
