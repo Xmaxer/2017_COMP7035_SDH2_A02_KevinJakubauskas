@@ -185,20 +185,8 @@ public class DivideAndConquerAlgorithms {
 			return 1;
 		else
 		{	
-			boolean isNegative = false;
-			if(m < 0)
-			{
-				m = Math.abs(m);
-				isNegative = true;
-			}
-			
 			m--;
-			int result =  n * power(n, m);
-			
-			if(isNegative)
-				return 1/result;
-			
-			return result;
+			return n * power(n, m);
 		}
 	}
 
@@ -239,6 +227,7 @@ public class DivideAndConquerAlgorithms {
 		
 		if(n > 0)
 		{
+			
 			drawImage(n - 1);
 		}
 	}
