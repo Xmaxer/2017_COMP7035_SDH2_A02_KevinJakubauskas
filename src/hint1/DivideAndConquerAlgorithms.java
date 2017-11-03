@@ -116,7 +116,7 @@ public class DivideAndConquerAlgorithms {
 		if(m.length() > 1)
 		{
 			int number = m.getElement(0);
-			
+
 			if(number > m.getElement(1))
 			{
 				m.removeElement(0);
@@ -124,7 +124,7 @@ public class DivideAndConquerAlgorithms {
 				boolean result = isReverse(m);
 
 				m.addElement(0, number);
-				
+
 				return result;
 			}
 			else
@@ -146,15 +146,26 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public int getNumAppearances(MyList<Integer> m, int n){
 
-		int counter = 0;
-
-		for(int i = 0; i < m.length(); i++)
+		if(m.length() > 0)
 		{
-			if(m.getElement(i) == n)
-				counter++;
-		}
+			int counter = 0;
+			int number = m.getElement(0);
 
-		return counter;
+			m.removeElement(0);
+
+			if(number == n)
+			{
+				counter ++;
+			}
+
+			int result =  getNumAppearances(m, n) + counter;
+
+			m.addElement(0, number);
+
+			return result;
+		}
+		else
+			return 0;
 
 	}
 
@@ -170,20 +181,17 @@ public class DivideAndConquerAlgorithms {
 
 	public int power(int n, int m){
 
-		int result = 0;
-
-		if(m != 0)
+		if(m == 0)
+			return 1;
+		if(m == 1)
+			return n;
+		else
 		{
-			result = n;
-
-			for(;1 < m; m--)
-			{
-				result *= n;
-			}
+			int result = n*n;
+			m--;
+			result = n *= power(n, m);
+			return result;
 		}
-
-		return result;
-		//return (int) Math.pow(n, m);
 	}
 
 	//-------------------------------------------------------------------
