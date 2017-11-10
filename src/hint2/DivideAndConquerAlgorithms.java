@@ -73,22 +73,21 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public void recursiveDisplayElements(MyList<Integer> m){
 
-		if(m.length() > 0)
+		if(m.length() == 1)
 		{
-			Integer num = m.getElement((m.length() - 1));
-			
-			if(m.length() == 1)
-			{
-				System.out.println(num);
-				return;
-			}
+			System.out.println(m.getElement(0));
+		}
+		if(m.length() > 1)
+		{
+			Integer num = m.getElement(0);
 
-			m.removeElement((m.length() - 1));
-			recursiveDisplayElements(m);
+			m.removeElement(0);
 
 			System.out.println(num);
+			
+			recursiveDisplayElements(m);
 
-			m.addElement(m.length(), num);
+			m.addElement(0, num);
 		}
 		else
 		{
@@ -180,7 +179,7 @@ public class DivideAndConquerAlgorithms {
 
 			res = concatenate(m1, m2);
 			res.addElement(0, num);
-			
+
 			m1.addElement(0, num);
 
 		}
@@ -191,7 +190,7 @@ public class DivideAndConquerAlgorithms {
 
 			res = concatenate(m1, m2);
 			res.addElement(0, num);
-			
+
 			m2.addElement(0, num);
 		}
 
@@ -217,15 +216,15 @@ public class DivideAndConquerAlgorithms {
 		else if(m.length() > 1)
 		{
 			Integer num = m.getElement(0);
-			
+
 			m.removeElement(0);
-			
+
 			MyList<Integer> bigger = quickSort(biggerEqualMyList(m, num));
-			
+
 			bigger.addElement(0, num);
-			
+
 			res = concatenate(quickSort(smallerMyList(m, num)), bigger);
-			
+
 			m.addElement(0, num);
 		}
 		return res;		
