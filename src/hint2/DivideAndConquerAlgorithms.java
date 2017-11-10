@@ -108,15 +108,25 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public MyList<Integer> smallerMyList(MyList<Integer> m, int e){
 
+		MyList<Integer> updatedList = new MyDynamicList<Integer>();
+
 		if(m.length() > 0)
 		{
 			Integer num = m.getElement(0);
 
-			if(num < e)
+			m.removeElement(0);
+
+			updatedList = smallerMyList(m, e);
+			
+			if(e > num)
 			{
-				m.removeElement(0);
+				updatedList.addElement(0, num);
 			}
+			
+			m.addElement(0, num);
 		}
+
+		return updatedList;
 	}
 
 	//-------------------------------------------------------------------
@@ -129,31 +139,26 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The new MyList containing just the elements being bigger or equal than 'e'  
 	 */	
 	public MyList<Integer> biggerEqualMyList(MyList<Integer> m, int e){
-		//-----------------------------
-		//Output Variable --> InitialValue
-		//-----------------------------
-		MyList<Integer> res = null;
+		
+		MyList<Integer> updatedList = new MyDynamicList<Integer>();
 
-		//-----------------------------
-		//SET OF OPS
-		//-----------------------------
+		if(m.length() > 0)
+		{
+			Integer num = m.getElement(0);
 
-		//-----------------------------
-		// I. SCENARIO IDENTIFICATION
-		//-----------------------------
-		int scenario = 0; 			
+			m.removeElement(0);
 
-		//-----------------------------
-		// II. SCENARIO IMPLEMENTATION 
-		//-----------------------------
-		switch(scenario){	
-
+			updatedList = biggerEqualMyList(m, e);
+			
+			if(e <= num)
+			{
+				updatedList.addElement(0, num);
+			}
+			
+			m.addElement(0, num);
 		}
 
-		//-----------------------------
-		//Output Variable --> Return FinalValue
-		//-----------------------------		
-		return res;	
+		return updatedList;
 	}
 
 	//-------------------------------------------------------------------
