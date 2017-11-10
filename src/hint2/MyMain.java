@@ -105,9 +105,13 @@ public class MyMain {
 		resM = ex.quickSort(m1);
 		ex.recursiveDisplayElements(resM);
 		
+		System.out.println("");
+		
 		resM = ex.quickSort(m2);
 		ex.recursiveDisplayElements(resM);
 
+		System.out.println("");
+		
 		resM = ex.quickSort(m3);
 		ex.recursiveDisplayElements(resM);
 		

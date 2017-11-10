@@ -73,11 +73,10 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public void recursiveDisplayElements(MyList<Integer> m){
 
-
-
 		if(m.length() > 0)
 		{
 			Integer num = m.getElement((m.length() - 1));
+			
 			if(m.length() == 1)
 			{
 				System.out.println(num);
@@ -171,19 +170,9 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The new MyList resulting of concatenate the other 2 MyList
 	 */	
 	public MyList<Integer> concatenate(MyList<Integer> m1, MyList<Integer> m2){
-		//-----------------------------
-		//Output Variable --> InitialValue
-		//-----------------------------
+
 		MyList<Integer> res = new MyDynamicList<Integer>();
 
-		/*		if(m1.length() == 0)
-		{
-			return m2;
-		}
-		else if(m2.length() == 0)
-		{
-			return m1;
-		}*/
 		if(m1.length() > 0)
 		{
 			Integer num = m1.getElement(0);
@@ -218,31 +207,27 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The new MyList being sorted.	  	  
 	 */	  
 	public MyList<Integer> quickSort(MyList<Integer> m){
-		//-----------------------------
-		//Output Variable --> InitialValue
-		//-----------------------------
-		MyList<Integer> res = null;
 
-		//-----------------------------
-		//SET OF OPS
-		//-----------------------------
+		MyList<Integer> res = new MyDynamicList<Integer>();
 
-		//-----------------------------
-		// I. SCENARIO IDENTIFICATION
-		//-----------------------------
-		int scenario = 0; 
-
-		//-----------------------------
-		// II. SCENARIO IMPLEMENTATION 
-		//-----------------------------
-
-		switch(scenario){	
-
-		}		
-
-		//-----------------------------
-		//Output Variable --> Return FinalValue
-		//-----------------------------		
+		if(m.length() == 1)
+		{
+			return m;
+		}
+		else if(m.length() > 1)
+		{
+			Integer num = m.getElement(0);
+			
+			m.removeElement(0);
+			
+			MyList<Integer> bigger = quickSort(biggerEqualMyList(m, num));
+			
+			bigger.addElement(0, num);
+			
+			res = concatenate(quickSort(smallerMyList(m, num)), bigger);
+			
+			m.addElement(0, num);
+		}
 		return res;		
 	}		
 
