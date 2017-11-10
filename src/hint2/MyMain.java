@@ -87,8 +87,12 @@ public class MyMain {
 		resM = ex.concatenate(m1, m2);
 		ex.recursiveDisplayElements(resM);
 		
+		System.out.println("");
+		
 		resM = ex.concatenate(m2, m1);
-		ex.recursiveDisplayElements(resM);		
+		ex.recursiveDisplayElements(resM);	
+		
+		System.out.println("");
 		
 		resM = ex.concatenate(m2, m3);
 		ex.recursiveDisplayElements(resM);

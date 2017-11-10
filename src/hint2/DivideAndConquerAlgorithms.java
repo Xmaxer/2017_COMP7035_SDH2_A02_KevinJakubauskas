@@ -117,12 +117,12 @@ public class DivideAndConquerAlgorithms {
 			m.removeElement(0);
 
 			updatedList = smallerMyList(m, e);
-			
+
 			if(e > num)
 			{
 				updatedList.addElement(0, num);
 			}
-			
+
 			m.addElement(0, num);
 		}
 
@@ -139,7 +139,7 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The new MyList containing just the elements being bigger or equal than 'e'  
 	 */	
 	public MyList<Integer> biggerEqualMyList(MyList<Integer> m, int e){
-		
+
 		MyList<Integer> updatedList = new MyDynamicList<Integer>();
 
 		if(m.length() > 0)
@@ -149,12 +149,12 @@ public class DivideAndConquerAlgorithms {
 			m.removeElement(0);
 
 			updatedList = biggerEqualMyList(m, e);
-			
+
 			if(e <= num)
 			{
 				updatedList.addElement(0, num);
 			}
-			
+
 			m.addElement(0, num);
 		}
 
@@ -174,29 +174,39 @@ public class DivideAndConquerAlgorithms {
 		//-----------------------------
 		//Output Variable --> InitialValue
 		//-----------------------------
-		MyList<Integer> res = null;
+		MyList<Integer> res = new MyDynamicList<Integer>();
 
-		//-----------------------------
-		//SET OF OPS
-		//-----------------------------
+		/*		if(m1.length() == 0)
+		{
+			return m2;
+		}
+		else if(m2.length() == 0)
+		{
+			return m1;
+		}*/
+		if(m1.length() > 0)
+		{
+			Integer num = m1.getElement(0);
+			m1.removeElement(0);
 
-		//-----------------------------
-		// I. SCENARIO IDENTIFICATION
-		//-----------------------------
-		int scenario = 0; 		
-
-		//-----------------------------
-		// II. SCENARIO IMPLEMENTATION 
-		//-----------------------------
-
-		switch(scenario){	
+			res = concatenate(m1, m2);
+			res.addElement(0, num);
+			
+			m1.addElement(0, num);
 
 		}
+		else if(m2.length() > 0)
+		{
+			Integer num = m2.getElement(0);
+			m2.removeElement(0);
 
-		//-----------------------------
-		//Output Variable --> Return FinalValue
-		//-----------------------------		
-		return res;	
+			res = concatenate(m1, m2);
+			res.addElement(0, num);
+			
+			m2.addElement(0, num);
+		}
+
+		return res;
 	}
 
 	//-------------------------------------------------------------------
