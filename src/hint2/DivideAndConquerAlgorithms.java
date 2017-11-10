@@ -89,10 +89,6 @@ public class DivideAndConquerAlgorithms {
 
 			m.addElement(0, num);
 		}
-		else
-		{
-			System.out.println("No elements to print.");
-		}
 	}
 
 	//-------------------------------------------------------------------

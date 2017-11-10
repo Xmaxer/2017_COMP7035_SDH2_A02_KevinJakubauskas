@@ -27,7 +27,7 @@ public class MyMain {
 		m3.addElement(0, 4);
 		m3.addElement(1, 8);
 		m3.addElement(2, 1);
-		m3.addElement(3, 3);			
+		m3.addElement(3, 3);
 		m3.addElement(4, 6);
 		m3.addElement(5, 5);
 		m3.addElement(6, 2);	
