@@ -87,20 +87,6 @@ public class DivideAndConquerAlgorithms {
 
 		return -1;
 
-		/*if(m.length() > 0)
-		{
-			int max = m.getElement(0);
-
-			for(int i = 1; i < m.length(); i++)
-			{
-				if(m.getElement(i) > max)
-					max = m.getElement(i);
-			}
-
-			return max;
-		}
-
-		return -1;*/
 	}
 
 	//-------------------------------------------------------------------
@@ -231,11 +217,9 @@ public class DivideAndConquerAlgorithms {
 			
 			for(int i = 0; i < n; i++)
 				System.out.print("*");
-
-			System.out.println("");
+		
 		}
-		else
-			System.out.println("");
+		System.out.println("");
 	}
 
 }

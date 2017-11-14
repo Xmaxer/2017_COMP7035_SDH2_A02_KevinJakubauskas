@@ -73,11 +73,7 @@ public class DivideAndConquerAlgorithms {
 	 */	
 	public void recursiveDisplayElements(MyList<Integer> m){
 
-		if(m.length() == 1)
-		{
-			System.out.println(m.getElement(0));
-		}
-		if(m.length() > 1)
+		if(m.length() > 0)
 		{
 			Integer num = m.getElement(0);
 
