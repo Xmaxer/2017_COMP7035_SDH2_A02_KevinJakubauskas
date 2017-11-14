@@ -199,7 +199,7 @@ public class ChangeMaking_1 {
 		{
 			int item = selectionFunction(changeGenerated, discarded, coinValues);
 			
-			if(feasibilityTest(coinValues, amount, changeGenerated, item))
+			if(feasibilityTest(coinValues, amount, changeGenerated, item) == true)
 			{
 				res.removeElement(item);
 				res.addElement(item, 1);
