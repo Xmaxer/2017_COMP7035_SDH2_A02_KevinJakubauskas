@@ -113,12 +113,11 @@ public class DivideAndConquerAlgorithms {
 
 				return result;
 			}
-			else
-				return false;
+			return false;
 
 		}
-		else
-			return true;
+		
+		return true;
 	}
 
 	//-------------------------------------------------------------------
@@ -150,8 +149,7 @@ public class DivideAndConquerAlgorithms {
 
 			return result;
 		}
-		else
-			return 0;
+		return 0;
 
 	}
 
@@ -167,13 +165,7 @@ public class DivideAndConquerAlgorithms {
 
 	public int power(int n, int m){
 
-		if(m == 0)
-			return 1;
-		else
-		{	
-			m--;
-			return n * power(n, m);
-		}
+		return (m == 0) ? 1 : n * power(n, --m);
 	}
 
 	//-------------------------------------------------------------------
@@ -185,7 +177,11 @@ public class DivideAndConquerAlgorithms {
 	 * @return: The term being computed 
 	 */	
 	public int lucas(int n){
-		if(n >= 0)
+		
+		return (n >= 0) ? (n == 0) ? 2 : (n == 1) ? 1 : lucas(n - 1) + lucas(n - 2) : - 1;
+		
+		//Old code if needed
+		/*if(n >= 0)
 		{
 			if(n == 0)
 				return 2;
@@ -195,7 +191,7 @@ public class DivideAndConquerAlgorithms {
 				return lucas(n - 1) + lucas(n - 2);
 		}
 
-		return -1;
+		return -1;*/
 	}
 
 	//-------------------------------------------------------------------
