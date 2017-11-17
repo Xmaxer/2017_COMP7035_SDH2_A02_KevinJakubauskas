@@ -132,7 +132,7 @@ public class ChangeMaking_1 {
 		
 		for(int i = 0, length = coinValues.length(); i < length; i++)
 		{
-			if(discarded.getElement(i) == 0 && feasibilityTest(coinValues, amount, changeGenerated, i) == true)
+			if(discarded.getElement(i) == 0 && feasibilityTest(coinValues, amount, changeGenerated, i))
 				return false;
 		}
 		return true;
@@ -195,11 +195,11 @@ public class ChangeMaking_1 {
 			discarded.addElement(0, 0);
 		}
 		
-		while(solutionTest(changeGenerated, discarded, coinValues, amount) == false)
+		while(!solutionTest(changeGenerated, discarded, coinValues, amount))
 		{
 			int item = selectionFunction(changeGenerated, discarded, coinValues);
 			
-			if(feasibilityTest(coinValues, amount, changeGenerated, item) == true)
+			if(feasibilityTest(coinValues, amount, changeGenerated, item))
 			{
 				res.removeElement(item);
 				res.addElement(item, 1);
