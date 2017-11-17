@@ -197,11 +197,8 @@ public class ChangeMaking_2 {
 		MyList<Integer> solutionValue = null;
 		int changeGenerated = 0;
 		
-		for(int i = 0, length = coinValues.length(); i < length; i++)
-		{
-			res.addElement(0, 0);
+		for(int i = 0, length = coinValues.length(); i < length; i++)	
 			discarded.addElement(0, 0);
-		}
 		
 		while(!solutionTest(changeGenerated, discarded, coinValues, amount))
 		{
@@ -209,12 +206,12 @@ public class ChangeMaking_2 {
 			
 			if(feasibilityTest(coinValues, amount, changeGenerated, item))
 			{
-				res.addElement(item, 1);
+				res.addElement(0, 1);
 				changeGenerated += coinValues.getElement(item);
 			}
 			else
 			{
-				res.addElement(item, 0);
+				res.addElement(0, 0);
 				discarded.removeElement(item);
 				discarded.addElement(item, 1);
 			}
