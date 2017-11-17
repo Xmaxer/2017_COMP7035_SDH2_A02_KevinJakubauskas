@@ -159,8 +159,7 @@ public class ChangeMaking_1 {
 		
 		for(int i = 0; i < sol.length(); i++)
 		{
-			if(sol.getElement(i) == 1)
-				counter++;
+			counter += sol.getElement(i);
 		}
 			
 		MyList<Integer> res = new MyDynamicList<Integer>();
@@ -168,7 +167,6 @@ public class ChangeMaking_1 {
 		res.addElement(1, counter);
 
 		return res;
-
 	}
 
 	//-------------------------------------------------------------------
@@ -189,7 +187,10 @@ public class ChangeMaking_1 {
 		int changeGenerated = 0;
 
 		for(int i = 0, length = coinValues.length(); i < length; i++)	
+		{
 			discarded.addElement(0, 0);
+			res.addElement(0, 0);
+		}
 
 		while(!solutionTest(changeGenerated, discarded, coinValues, amount))
 		{
@@ -197,13 +198,14 @@ public class ChangeMaking_1 {
 
 			if(feasibilityTest(coinValues, amount, changeGenerated, item))
 			{
-				res.addElement(0, 1);
+				int old = res.getElement(item);
+				res.removeElement(item);
+				res.addElement(item, ++old);
 
 				changeGenerated += coinValues.getElement(item);
 			}
 			else
 			{
-				res.addElement(0, 0);
 				discarded.removeElement(item);
 				discarded.addElement(item, 1);
 			}
