@@ -1,10 +1,10 @@
 package hint3;
 /**
-* Classical Change making problem with an unlimited amount of coins of each type. <br> 
-* Version 1: Selection function with basic policy: First available coin.<br> 
-* Leads to non-optimal solution.<br>
-* The class encapsulates all the functions of the Greedy schema<br>
-*/
+ * Classical Change making problem with an unlimited amount of coins of each type. <br> 
+ * Version 1: Selection function with basic policy: First available coin.<br> 
+ * Leads to non-optimal solution.<br>
+ * The class encapsulates all the functions of the Greedy schema<br>
+ */
 
 public class ChangeMaking_1 {
 
@@ -32,7 +32,7 @@ public class ChangeMaking_1 {
 		// I. SCENARIO IDENTIFICATION
 		//-----------------------------
 		int scenario = 0; 
-		
+
 		//Rule 1. MyList is empty
 		if (m.length() == 0) 
 			scenario = 1;
@@ -44,31 +44,31 @@ public class ChangeMaking_1 {
 		// II. SCENARIO IMPLEMENTATION 
 		//-----------------------------
 		switch(scenario){	
-				
+
 		//Rule 1. MyList is empty
 		case 1: 
 			//1. We print the empty message
 			System.out.println("Empty MyList");
-			
+
 			break;
-			
-		//Rule 2. MyList is non-empty
+
+			//Rule 2. MyList is non-empty
 		case 2: 
 			//1. We print the initial message
 			int size = m.length();
 			System.out.print("MyList has " + size + " items: [");
-			
+
 			//2. We traverse the items
 			for (int i = 0; i < size - 1; i++)
 				System.out.print(m.getElement(i) + ", ");
 			System.out.println(m.getElement(size - 1) + "]");
-			
+
 			break;
-	
+
 		}
-		
+
 	}
-		
+
 	//-------------------------------------------------------------------
 	// 1. selectionFunction --> It selects the next candidate to be considered.  
 	//-------------------------------------------------------------------	
@@ -81,9 +81,9 @@ public class ChangeMaking_1 {
 	 * @return: The index of candidate to be selected.
 	 */	
 	public int selectionFunction(int changeGenerated, 
-								 MyList<Integer> discarded, 
-								 MyList<Integer> coinValues){
-		
+			MyList<Integer> discarded, 
+			MyList<Integer> coinValues){
+
 		for(int i = 0, length = coinValues.length(); i < length; i++)
 		{
 			if(discarded.getElement(i) == 0)
@@ -91,7 +91,7 @@ public class ChangeMaking_1 {
 		}
 		return -1;	
 	}
-	
+
 	//-------------------------------------------------------------------
 	// 2. feasibilityTest --> It selects if a candidate can be added to the solution.  
 	//-------------------------------------------------------------------	
@@ -106,13 +106,13 @@ public class ChangeMaking_1 {
 	 */	
 
 	public boolean feasibilityTest(MyList<Integer> coinValues,
-								   int amount,
-								   int changeGenerated,
-								   int itemSelected){
-		
+			int amount,
+			int changeGenerated,
+			int itemSelected){
+
 		return (coinValues.getElement(itemSelected) + changeGenerated <= amount);
 	}
-	
+
 	//-------------------------------------------------------------------
 	// 3. solutionTest --> It selects if the current solution is the final solution  
 	//-------------------------------------------------------------------	
@@ -126,10 +126,10 @@ public class ChangeMaking_1 {
 	 * @return: Whether the current solution is the final solution.
 	 */	
 	public boolean solutionTest(int changeGenerated,
-								MyList<Integer> discarded,
-								MyList<Integer> coinValues, 
-							    int amount){
-		
+			MyList<Integer> discarded,
+			MyList<Integer> coinValues, 
+			int amount){
+
 		for(int i = 0, length = coinValues.length(); i < length; i++)
 		{
 			if(discarded.getElement(i) == 0 && feasibilityTest(coinValues, amount, changeGenerated, i))
@@ -152,26 +152,25 @@ public class ChangeMaking_1 {
 	 * @return: The value of such solution.
 	 */	
 	public MyList<Integer> objectiveFunction(MyList<Integer> sol, 
-											 int changeGenerated, 
-											 int amount){
-		
+			int changeGenerated, 
+			int amount){
+
 		int counter = 0;
-		int accuracy = (int) (((double) changeGenerated / (double) amount)*100);
 		
-		for(int i = 0, length = sol.length(); i < length; i++)
+		for(int i = 0; i < sol.length(); i++)
 		{
-			if(sol.getElement(0) != 0)
+			if(sol.getElement(i) == 1)
 				counter++;
-				
 		}
+			
 		MyList<Integer> res = new MyDynamicList<Integer>();
-		res.addElement(0, counter);
-		res.addElement(1, accuracy);
-		
+		res.addElement(0, amount - changeGenerated);
+		res.addElement(1, counter);
+
 		return res;
 
 	}
-	
+
 	//-------------------------------------------------------------------
 	// 5. solve --> This function solves the problem using a greedy algorithm.  
 	//-------------------------------------------------------------------	
@@ -188,34 +187,36 @@ public class ChangeMaking_1 {
 		MyList<Integer> discarded = new MyDynamicList<Integer>();
 		MyList<Integer> solutionValue = null;
 		int changeGenerated = 0;
-		
+
 		for(int i = 0, length = coinValues.length(); i < length; i++)
 		{
 			res.addElement(0, 0);
 			discarded.addElement(0, 0);
 		}
-		
+
 		while(!solutionTest(changeGenerated, discarded, coinValues, amount))
 		{
 			int item = selectionFunction(changeGenerated, discarded, coinValues);
-			
+
 			if(feasibilityTest(coinValues, amount, changeGenerated, item))
 			{
-				res.removeElement(item);
 				res.addElement(item, 1);
-				
+
 				changeGenerated += coinValues.getElement(item);
 			}
-			
-			discarded.removeElement(item);
-			discarded.addElement(item, 1);
+			else
+			{
+				res.addElement(item, 0);
+				discarded.removeElement(item);
+				discarded.addElement(item, 1);
+			}
 		}
 
 		displayElements(res);
-		
+
 		solutionValue = objectiveFunction(res, changeGenerated, amount);
-		System.out.println("Number of coins used: " + solutionValue.getElement(0) + "\nAccuracy: " + solutionValue.getElement(1) + "%");
+		System.out.println("Number of coins used: " + solutionValue.getElement(1) + "\nAccuracy: " + solutionValue.getElement(0) + " away.");
 		return res;		
 	}
-	
+
 }

@@ -166,19 +166,18 @@ public class ChangeMaking_2 {
 											 int amount){
 		
 		int counter = 0;
-		int accuracy = (int) (((double) changeGenerated / (double) amount)*100);
 		
-		for(int i = 0, length = sol.length(); i < length; i++)
+		for(int i = 0; i < sol.length(); i++)
 		{
-			if(sol.getElement(0) != 0)
+			if(sol.getElement(i) == 1)
 				counter++;
-				
 		}
+			
 		MyList<Integer> res = new MyDynamicList<Integer>();
-		res.addElement(0, counter);
-		res.addElement(1, accuracy);
-		
-		return res;		
+		res.addElement(0, amount - changeGenerated);
+		res.addElement(1, counter);
+
+		return res;	
 	}
 	
 	//-------------------------------------------------------------------
@@ -210,20 +209,21 @@ public class ChangeMaking_2 {
 			
 			if(feasibilityTest(coinValues, amount, changeGenerated, item))
 			{
-				res.removeElement(item);
 				res.addElement(item, 1);
-				
 				changeGenerated += coinValues.getElement(item);
 			}
-			
-			discarded.removeElement(item);
-			discarded.addElement(item, 1);
+			else
+			{
+				res.addElement(item, 0);
+				discarded.removeElement(item);
+				discarded.addElement(item, 1);
+			}
 		}
 
 		displayElements(res);
 		
 		solutionValue = objectiveFunction(res, changeGenerated, amount);
-		System.out.println("Number of coins used: " + solutionValue.getElement(0) + "\nAccuracy: " + solutionValue.getElement(1) + "%");
+		System.out.println("Number of coins used: " + solutionValue.getElement(1) + "\nAccuracy: " + solutionValue.getElement(0));
 		return res;		
 	}
 	
